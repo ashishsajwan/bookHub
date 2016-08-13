@@ -10,7 +10,11 @@ import {BookDetailsComponent} from './bookDetails.component'
 })
 export class BodyComponent {
 	bookDetails;
-	showBookDetails($events) {
-		this.bookDetails = $events.bookDetails;
+	bookmarked = false;
+	showBookDetails($event) {
+		this.bookDetails = $event.bookDetails;
+	}
+	showBookmarks($event) {
+		this.bookmarked = !this.bookmarked;
 	}
 }

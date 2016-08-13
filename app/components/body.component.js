@@ -26,9 +26,13 @@ System.register(['angular2/core', './books.component', './bookDetails.component'
         execute: function() {
             BodyComponent = (function () {
                 function BodyComponent() {
+                    this.bookmarked = false;
                 }
-                BodyComponent.prototype.showBookDetails = function ($events) {
-                    this.bookDetails = $events.bookDetails;
+                BodyComponent.prototype.showBookDetails = function ($event) {
+                    this.bookDetails = $event.bookDetails;
+                };
+                BodyComponent.prototype.showBookmarks = function ($event) {
+                    this.bookmarked = !this.bookmarked;
                 };
                 BodyComponent = __decorate([
                     core_1.Component({

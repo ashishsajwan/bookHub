@@ -32,6 +32,7 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                     var _this = this;
                     this._booksService = _booksService;
                     this.bookChange = new core_1.EventEmitter();
+                    this.bookmarked = false;
                     this.books = [];
                     this._books = [];
                     var keyups = Rx_1.Observable.fromEvent($('#search-container'), 'keyup').map(function (e) { return e.target.value; }).distinctUntilChanged();
@@ -55,6 +56,16 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                         }
                     });
                 }
+                BooksComponent.prototype.ngOnChanges = function (changes) {
+                    if (changes['bookmarked'].currentValue) {
+                        this.books = _.filter(this._books, function (book) {
+                            return book.isBookmarked;
+                        });
+                    }
+                    else {
+                        this.books = this._books;
+                    }
+                };
                 BooksComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this._booksService.getBooks().subscribe(function (books) {
@@ -66,10 +77,17 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                             id: bookId
                         }) });
                 };
+                BooksComponent.prototype.showBookDetails = function ($event) {
+                    console.log($event);
+                };
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', Object)
                 ], BooksComponent.prototype, "bookChange", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], BooksComponent.prototype, "bookmarked", void 0);
                 BooksComponent = __decorate([
                     core_1.Component({
                         selector: 'bookslist',

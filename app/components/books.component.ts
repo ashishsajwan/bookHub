@@ -1,4 +1,4 @@
-import {Component, OnInit, Output, EventEmitter} from 'angular2/core';
+import {Component, OnInit, Input, Output, EventEmitter} from 'angular2/core';
 import {BooksService} from '../services/books.service';
 import {HTTP_PROVIDERS} from 'angular2/http';
 import {Observable} from 'rxjs/Rx';
@@ -11,6 +11,7 @@ import {Observable} from 'rxjs/Rx';
 
 export class BooksComponent implements OnInit {
   @Output() bookChange = new EventEmitter();
+  @Input() bookmarked = false;
   books = [];
   _books = [];
   constructor(private _booksService: BooksService) {
@@ -34,6 +35,15 @@ export class BooksComponent implements OnInit {
       }
     });
   }
+  ngOnChanges(changes: SimpleChanges) {
+    if(changes['bookmarked'].currentValue) {
+      this.books = _.filter(this._books, function(book) {
+        return book.isBookmarked;
+      });
+    } else {
+      this.books = this._books;
+    }
+  }
   ngOnInit() {
     this._booksService.getBooks().subscribe(books => {
       this._books = this.books = books.books;
@@ -43,5 +53,8 @@ export class BooksComponent implements OnInit {
     this.bookChange.emit({bookDetails:_.findWhere(this.books, {
         id: bookId
       })});
+  }
+  showBookDetails($event){
+    console.log($event);
   }
 }

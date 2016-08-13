@@ -4,14 +4,14 @@
       <div class="row">
         <div class="col s6">
           <div class="input-field">
-            <input class="validate" id="search-container" placeholder="By book name, author etc" type="text"/>
-            <label for="search-container">
+            <input class="validate" id="search-container" placeholder="Search by book name, author etc" type="text"/>
+            <label for="search-container" class="hide">
               Search
             </label>
           </div>
         </div>
         <div class="col s6 right-align">
-          <a class="waves-effect waves-light btn" id="show-bookmarks">
+          <a class="waves-effect waves-light btn" id="show-bookmarks" [class.active]="bookmarked" (click) = "showBookmarks($event)">
             <i class="material-icons left">
               turned_in
             </i>
@@ -19,7 +19,7 @@
           </a>
         </div>
       </div>
-      <bookslist (bookChange)="showBookDetails($event)" id="books-list-container">
+      <bookslist [bookmarked] = "bookmarked" (bookChange)="showBookDetails($event)" id="books-list-container">
         <div class="loading centroid">
           <i class="child fa fa-spinner fa-spin">
           </i>

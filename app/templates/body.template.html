@@ -1,0 +1,64 @@
+<div class="appBody container">
+  <div class="row">
+    <div class="col m6" id="books-list-view-container">
+      <div class="row">
+        <div class="col s6">
+          <div class="input-field">
+            <input class="validate" id="search-container" placeholder="By book name, author etc" type="text"/>
+            <label for="search-container">
+              Search
+            </label>
+          </div>
+        </div>
+        <div class="col s6 right-align">
+          <a class="waves-effect waves-light btn" id="show-bookmarks">
+            <i class="material-icons left">
+              turned_in
+            </i>
+            Bookmarks
+          </a>
+        </div>
+      </div>
+      <bookslist (bookChange)="showBookDetails($event)" id="books-list-container">
+        <div class="loading centroid">
+          <i class="child fa fa-spinner fa-spin">
+          </i>
+        </div>
+      </bookslist>
+      <div id="action-buttons-container">
+        <div class="fixed-action-btn horizontal">
+          <a class="btn-floating btn-large red">
+            <i class="large material-icons">
+              settings
+            </i>
+          </a>
+          <ul>
+            <li>
+              <a class="waves-effect blue waves-light btn" id="price-sort">
+                ₹ Price
+              </a>
+            </li>
+            <li>
+              <a class="waves-effect yellow waves-light btn" id="rating-sort">
+                <i class="material-icons left">
+                  stars
+                </i>
+                Ratings
+              </a>
+            </li>
+            <li>
+              <a class="waves-effect green waves-light btn" id="reset-list">
+                <i class="material-icons left">
+                  replay
+                </i>
+                Reset
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <bookdetails [bookDetails]="bookDetails" class="col m6" id="book-big-view-container">
+    </bookdetails>
+  </div>
+</div>

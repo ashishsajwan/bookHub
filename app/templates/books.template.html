@@ -1,0 +1,17 @@
+<div *ngFor="#book of books" class="book-list-view" id="{{book.id}}" (click)="showBook(book.id)">
+  <div class="book-name" title="{{book.name}}">
+    <i class="material-icons">
+      forum
+    </i>
+    {{book.name}}
+  </div>
+  <div class="book-price">
+    {{book.price}} <i class="material-icons">
+      play_arrow
+    </i>
+  </div>
+</div>
+
+<div *ngIf="books.length == 0" class="center-align">
+  Oops.. no data to deal with !!
+</div>

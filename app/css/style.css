@@ -1,0 +1,235 @@
+.card-content {
+  position: relative;
+}
+
+.card-title .material-icons {
+  top: 30px;
+  right: 10px;
+  position: absolute;
+}
+
+.material-icons {
+  vertical-align: middle;
+}
+
+.container {
+  width: 85% !important;
+}
+
+.centroid {
+  text-align: center;
+}
+
+.centroid:before {
+  content: '';
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+
+.centroid .child {
+  display: inline-block;
+  vertical-align: middle;
+  padding: 3px;
+}
+
+content .loading {
+  width: 100%;
+  height: 100%
+}
+
+#app-header-container, #app-body-container {
+  font-size: 14px;
+  border-bottom: 2px solid #B3B3B3;
+  display: inherit;
+}
+
+#logo-container, #stats-container {
+  margin: 10px 0;
+}
+
+#logo-container div, #stats-container div {
+  display: inline-block;
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+#logo-container {
+  font-size: 1.4em;
+}
+
+#logo-container h1 {
+  border: 2px solid #656668;
+  border-radius: 5px;
+  font-size: 2em !important;
+  padding: 3px 10px;
+}
+
+#logo-container h1, #logo-container h3 {
+  font-size: 1.8em;
+  margin: 0;
+  color: #81C51F;
+}
+
+#logo-container .small {
+  color: #587847;
+  vertical-align: sub;
+}
+
+#stats-container {
+  font-size: 1.4em;
+}
+
+#stats-box {
+  border: 2px solid #56853B;
+  border-radius: 10px;
+  background: #E3F0DB;
+  padding: 0 15px;
+  line-height: 40px;
+}
+
+#stats-box div {
+  padding: 0 15px;
+}
+
+#app-body-container {
+  background-color: #E7E8E7;
+}
+
+#app-body-container .appBody {
+  border: 2px solid #B3B3B3;
+  padding: 10px;
+  border-top: none;
+}
+
+#books-list-view-container {
+  border-right: 1px solid #B3B3B3;
+  padding: 10px;
+}
+
+#books-list-container {
+  min-height: 200px;
+  margin: 10px 0;
+  display: inherit;
+  width: 100%
+}
+
+#show-bookmarks.active {
+  background: #93c46b;
+}
+
+#action-buttons-container {
+  border-top: 2px solid #017997;
+  position: relative;
+  height: 70px;
+}
+
+#action-buttons-container .fixed-action-btn {
+  position: absolute;
+  top: 10px;
+  right: 0;
+}
+
+.book-list-view {
+  cursor: pointer;
+  border: 1px solid #66A245;
+  margin-bottom: 10px;
+  padding: 5px 10px 0 10px;
+  border-radius: 5px;
+}
+
+.book-list-view .book-name {
+  white-space: nowrap;
+  width: 80%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.book-list-view.active {
+  background: #D1EBC2;
+}
+
+.book-list-view div {
+  display: inline-block;
+}
+
+.book-list-view .book-price {
+  float: right;
+  margin: 0 10px;
+  color: #666666;
+}
+
+#book-big-view {
+  padding: 10px;
+}
+
+#book-big-view .card-image {
+  background: #d7d7d7;
+}
+
+#book-big-view .card-image .activator {
+  max-height: 200px;
+  margin: 0 auto;
+  width: inherit;
+}
+
+#book-big-view #book-description-container #description-text {
+  color: #A38249;
+  padding: 10px;
+  background: #FCFCCF;
+}
+
+#book-big-view #action-buttons-container {
+  border: none;
+  overflow: auto;
+  font-size: 1.4em;
+}
+
+#book-big-view #map {
+  height: 200px;
+  background: #d7d7d7;
+}
+
+#book-big-view #bookmark-book.bookmark {
+  background: #93c46b;
+}
+
+#book-big-view .current-location {
+  margin: 10px 0;
+}
+
+#book-big-view .book-details {
+  border: 1px solid #6B6B6B;
+  border-radius: 5px;
+  font-size: 1.3em;
+  background: #EEEEDC;
+}
+
+#book-big-view .book-details .book-type {
+  text-transform: capitalize;
+}
+
+#book-big-view .book-details .no-wrap {
+  padding: 5px 15px;
+}
+
+#book-big-view .book-details .book-name {
+  background: #6B6B6B;
+  font-size: 1.2em;
+  color: #FFFFFF;
+}
+
+#book-big-view .book-details #rating-star-container {
+  display: inline-block;
+  vertical-align: middle;
+}
+
+#book-big-view .book-details #rating-star-container #rating-star-window {
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#book-thumbnail img {
+  width: 200px;
+  height: 200px;
+}

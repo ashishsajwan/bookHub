@@ -35,9 +35,10 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                     this.bookmarked = false;
                     this.books = [];
                     this._books = [];
+                    this.currentBook = null;
                     var keyups = Rx_1.Observable.fromEvent($('#search-container'), 'keyup').map(function (e) { return e.target.value; }).distinctUntilChanged();
                     keyups.subscribe(function (data) {
-                        _this.bookChange.emit({ bookDetails: false });
+                        _this.reset();
                         if (data) {
                             _this.books = _.filter(_this._books, function (book) {
                                 if (book.name.toLowerCase().indexOf(data.toLowerCase()) != -1) {
@@ -57,6 +58,7 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                     });
                 }
                 BooksComponent.prototype.ngOnChanges = function (changes) {
+                    this.reset();
                     if (changes['bookmarked'].currentValue) {
                         this.books = _.filter(this._books, function (book) {
                             return book.isBookmarked;
@@ -69,16 +71,21 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                 BooksComponent.prototype.ngOnInit = function () {
                     var _this = this;
                     this._booksService.getBooks().subscribe(function (books) {
+                        _.each(books.books, function (book, key) {
+                            books.books[key]['isBookmarked'] = (localStorage.getItem('bookmark-' + book.id)) ? true : false;
+                        });
                         _this._books = _this.books = books.books;
                     });
                 };
                 BooksComponent.prototype.showBook = function (bookId) {
+                    this.currentBook = bookId;
                     this.bookChange.emit({ bookDetails: _.findWhere(this.books, {
                             id: bookId
                         }) });
                 };
-                BooksComponent.prototype.showBookDetails = function ($event) {
-                    console.log($event);
+                BooksComponent.prototype.reset = function () {
+                    this.bookChange.emit({ bookDetails: false });
+                    this.currentBook = null;
                 };
                 __decorate([
                     core_1.Output(), 

@@ -6,5 +6,12 @@ import {Component, Input} from 'angular2/core';
 })
 export class BookDetailsComponent {
 	@Input() bookDetails = false;
-
+	bookmarkIt(){
+		this.bookDetails.isBookmarked = !this.bookDetails.isBookmarked;
+		if(this.bookDetails.isBookmarked) {
+			localStorage.setItem('bookmark-'+this.bookDetails.id, 'bookmarked');
+		} else {
+			localStorage.removeItem('bookmark-'+this.bookDetails.id);
+		}
+	}
 }

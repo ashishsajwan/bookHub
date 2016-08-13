@@ -14,10 +14,11 @@ export class BooksComponent implements OnInit {
   @Input() bookmarked = false;
   books = [];
   _books = [];
+  currentBook = null;
   constructor(private _booksService: BooksService) {
     var keyups = Observable.fromEvent($('#search-container'),'keyup').map(e => e.target.value).distinctUntilChanged();
     keyups.subscribe(data => {
-      this.bookChange.emit({bookDetails:false});
+      this.reset();
       if(data) {
         this.books = _.filter(this._books, function(book) {
             if (book.name.toLowerCase().indexOf(data.toLowerCase()) != -1) {
@@ -36,6 +37,7 @@ export class BooksComponent implements OnInit {
     });
   }
   ngOnChanges(changes: SimpleChanges) {
+    this.reset();
     if(changes['bookmarked'].currentValue) {
       this.books = _.filter(this._books, function(book) {
         return book.isBookmarked;
@@ -46,15 +48,20 @@ export class BooksComponent implements OnInit {
   }
   ngOnInit() {
     this._booksService.getBooks().subscribe(books => {
+      _.each(books.books,function(book,key){
+        books.books[key]['isBookmarked'] = (localStorage.getItem('bookmark-'+book.id)) ? true : false;
+      });
       this._books = this.books = books.books;
     });
   }
   showBook(bookId) {
+    this.currentBook = bookId;
     this.bookChange.emit({bookDetails:_.findWhere(this.books, {
         id: bookId
       })});
   }
-  showBookDetails($event){
-    console.log($event);
+  reset(){
+    this.bookChange.emit({bookDetails:false});
+    this.currentBook = null;
   }
 }

@@ -190,7 +190,7 @@ content .loading {
   background: #d7d7d7;
 }
 
-#book-big-view #bookmark-book.bookmark {
+#book-big-view #bookmark-book.active {
   background: #93c46b;
 }
 

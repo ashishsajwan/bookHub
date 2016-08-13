@@ -22,6 +22,15 @@ System.register(['angular2/core'], function(exports_1, context_1) {
                 function BookDetailsComponent() {
                     this.bookDetails = false;
                 }
+                BookDetailsComponent.prototype.bookmarkIt = function () {
+                    this.bookDetails.isBookmarked = !this.bookDetails.isBookmarked;
+                    if (this.bookDetails.isBookmarked) {
+                        localStorage.setItem('bookmark-' + this.bookDetails.id, 'bookmarked');
+                    }
+                    else {
+                        localStorage.removeItem('bookmark-' + this.bookDetails.id);
+                    }
+                };
                 __decorate([
                     core_1.Input(), 
                     __metadata('design:type', Object)

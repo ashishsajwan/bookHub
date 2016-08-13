@@ -1,4 +1,4 @@
-<div *ngFor="#book of books" class="book-list-view" id="{{book.id}}" (click)="showBook(book.id)">
+<div *ngFor="#book of books" class="book-list-view" id="{{book.id}}" [class.active] = "currentBook==book.id" (click)="showBook(book.id)">
   <div class="book-name" title="{{book.name}}">
     <i class="material-icons">
       forum

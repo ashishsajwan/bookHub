@@ -27,12 +27,16 @@ System.register(['angular2/core', './books.component', './bookDetails.component'
             BodyComponent = (function () {
                 function BodyComponent() {
                     this.bookmarked = false;
+                    this.sort_key = null;
                 }
                 BodyComponent.prototype.showBookDetails = function ($event) {
                     this.bookDetails = $event.bookDetails;
                 };
-                BodyComponent.prototype.showBookmarks = function ($event) {
+                BodyComponent.prototype.showBookmarks = function () {
                     this.bookmarked = !this.bookmarked;
+                };
+                BodyComponent.prototype.sortByKey = function (key) {
+                    this.sort_key = key;
                 };
                 BodyComponent = __decorate([
                     core_1.Component({

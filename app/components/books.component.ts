@@ -12,6 +12,7 @@ import {Observable} from 'rxjs/Rx';
 export class BooksComponent implements OnInit {
   @Output() bookChange = new EventEmitter();
   @Input() bookmarked = false;
+  @Input() sort_key = null;
   books = [];
   _books = [];
   currentBook = null;
@@ -38,12 +39,24 @@ export class BooksComponent implements OnInit {
   }
   ngOnChanges(changes: SimpleChanges) {
     this.reset();
-    if(changes['bookmarked'].currentValue) {
-      this.books = _.filter(this._books, function(book) {
-        return book.isBookmarked;
-      });
-    } else {
-      this.books = this._books;
+    if(changes['bookmarked']){
+      if(changes['bookmarked'].currentValue) {
+        this.books = _.filter(this._books, function(book) {
+          return book.isBookmarked;
+        });
+      } else {
+        this.books = this._books;
+      }
+    }
+    if(changes['sort_key']) {
+      if(changes['sort_key'].currentValue) {
+        var that = this;
+          that.books = _.sortBy(that._books,function (a) {
+            return that.sanitizeNumber(a[that.sort_key]);
+          });
+      } else {
+        this.books = this._books;
+      }
     }
   }
   ngOnInit() {
@@ -63,5 +76,10 @@ export class BooksComponent implements OnInit {
   reset(){
     this.bookChange.emit({bookDetails:false});
     this.currentBook = null;
+  }
+  sanitizeNumber(string) {
+    if (string) {
+      return Number(string.replace(/[^0-9\.]+/g,""))
+    }
   }
 }

@@ -11,10 +11,14 @@ import {BookDetailsComponent} from './bookDetails.component'
 export class BodyComponent {
 	bookDetails;
 	bookmarked = false;
+	sort_key = null;
 	showBookDetails($event) {
 		this.bookDetails = $event.bookDetails;
 	}
-	showBookmarks($event) {
+	showBookmarks() {
 		this.bookmarked = !this.bookmarked;
+	}
+	sortByKey(key) {
+		this.sort_key = key;
 	}
 }

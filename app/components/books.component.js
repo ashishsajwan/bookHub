@@ -33,6 +33,7 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                     this._booksService = _booksService;
                     this.bookChange = new core_1.EventEmitter();
                     this.bookmarked = false;
+                    this.sort_key = null;
                     this.books = [];
                     this._books = [];
                     this.currentBook = null;
@@ -59,13 +60,26 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                 }
                 BooksComponent.prototype.ngOnChanges = function (changes) {
                     this.reset();
-                    if (changes['bookmarked'].currentValue) {
-                        this.books = _.filter(this._books, function (book) {
-                            return book.isBookmarked;
-                        });
+                    if (changes['bookmarked']) {
+                        if (changes['bookmarked'].currentValue) {
+                            this.books = _.filter(this._books, function (book) {
+                                return book.isBookmarked;
+                            });
+                        }
+                        else {
+                            this.books = this._books;
+                        }
                     }
-                    else {
-                        this.books = this._books;
+                    if (changes['sort_key']) {
+                        if (changes['sort_key'].currentValue) {
+                            var that = this;
+                            that.books = _.sortBy(that._books, function (a) {
+                                return that.sanitizeNumber(a[that.sort_key]);
+                            });
+                        }
+                        else {
+                            this.books = this._books;
+                        }
                     }
                 };
                 BooksComponent.prototype.ngOnInit = function () {
@@ -87,6 +101,11 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                     this.bookChange.emit({ bookDetails: false });
                     this.currentBook = null;
                 };
+                BooksComponent.prototype.sanitizeNumber = function (string) {
+                    if (string) {
+                        return Number(string.replace(/[^0-9\.]+/g, ""));
+                    }
+                };
                 __decorate([
                     core_1.Output(), 
                     __metadata('design:type', Object)
@@ -95,6 +114,10 @@ System.register(['angular2/core', '../services/books.service', 'angular2/http', 
                     core_1.Input(), 
                     __metadata('design:type', Object)
                 ], BooksComponent.prototype, "bookmarked", void 0);
+                __decorate([
+                    core_1.Input(), 
+                    __metadata('design:type', Object)
+                ], BooksComponent.prototype, "sort_key", void 0);
                 BooksComponent = __decorate([
                     core_1.Component({
                         selector: 'bookslist',

@@ -92,12 +92,7 @@ content .loading {
   padding: 0 15px;
 }
 
-#app-body-container {
-  background-color: #E7E8E7;
-}
-
 #app-body-container .appBody {
-  border: 2px solid #B3B3B3;
   padding: 10px;
   border-top: none;
 }

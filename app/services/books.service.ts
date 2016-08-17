@@ -8,7 +8,7 @@ export class BooksService {
 
 	}
 	getBooks() {
-		return this._http.get('https://capillary.0x10.info/api/books?type=json&query=list_books')
+		return this._http.get('https://rawgit.com/ashishsajwan/bookHub/master/books.json')
 		.map(res => res.json());
 	}
 }

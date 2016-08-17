@@ -27,7 +27,7 @@ System.register(['angular2/http', 'rxjs/add/operator/map', 'angular2/core'], fun
                     this._http = _http;
                 }
                 BooksService.prototype.getBooks = function () {
-                    return this._http.get('https://capillary.0x10.info/api/books?type=json&query=list_books')
+                    return this._http.get('https://rawgit.com/ashishsajwan/bookHub/master/books.json')
                         .map(function (res) { return res.json(); });
                 };
                 BooksService = __decorate([
